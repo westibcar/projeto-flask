@@ -1,4 +1,4 @@
-name: Build and Push Flask App to Docker Hub
+name: Build Docker Image
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
       - main  # Branch principal
 
 jobs:
-  build-and-push:
+  build-and-push-image:
     runs-on: ubuntu-latest
 
     steps:
