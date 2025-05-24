@@ -12,7 +12,6 @@ def health_check():
         "Status": "OK",
         "Version": "1.0.0",
         "Tempo": datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
-        "Author": "Uday",
     }), 200
 
 if __name__ == '__main__':
