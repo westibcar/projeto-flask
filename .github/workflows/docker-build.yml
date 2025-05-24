@@ -25,10 +25,10 @@ jobs:
 
       - name: Build da imagem Docker com tags
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/uday-app:${IMAGE_TAG} .
-          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/uday-app:${IMAGE_TAG} ${{ secrets.DOCKERHUB_USERNAME }}/uday-app:latest
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/uday_app:${IMAGE_TAG} .
+          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/uday_app:${IMAGE_TAG} ${{ secrets.DOCKERHUB_USERNAME }}/uday_app:latest
 
       - name: Push da imagem com tag única e latest
         run: |
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/uday-app:${IMAGE_TAG}
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/uday-app:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/uday_app:${IMAGE_TAG}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/uday_app:latest
