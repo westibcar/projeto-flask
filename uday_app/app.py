@@ -10,7 +10,7 @@ app.register_blueprint(bp)
 def health_check():
     return jsonify({
         "Status": "OK",
-        "Version": "1.0.2",
+        "Version": "1.0.3",
         "Tempo": datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
         "Author": "Uday",
     }), 200
