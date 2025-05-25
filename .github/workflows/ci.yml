@@ -3,7 +3,7 @@ name: Build Docker Image
 on:
   push:
     branches:
-      - main  # Branch principal
+      - main  # Gatilho para branch principal
 
 jobs:
   build-and-push-image:
@@ -13,9 +13,8 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v3
 
-      - name: Definir versão da imagem
-        id: vars
-        run: echo "IMAGE_TAG=${GITHUB_SHA::7}" >> $GITHUB_ENV
+      - name: Definir a tag da imagem (SHA reduzido)
+        run: echo "IMAGE_TAG=$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_ENV
 
       - name: Login no Docker Hub
         uses: docker/login-action@v2
@@ -23,10 +22,13 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build da imagem Docker com tags
+      - name: Build da imagem com a tag da versão e latest
         run: |
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/uday_app:${IMAGE_TAG} .
+          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/uday_app:${IMAGE_TAG} ${{ secrets.DOCKERHUB_USERNAME }}/uday_app:latest
 
-      - name: Push da imagem com tag única e latest
-        run: |
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/uday_app:${IMAGE_TAG}
+      - name: Push da imagem com tag da versão
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/uday_app:${IMAGE_TAG}
+
+      - name: Push da imagem com tag latest
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/uday_app:latest
