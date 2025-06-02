@@ -5,6 +5,7 @@ metadata:
   description: Cadastro de Empresas Uday
   annotations:
     github.com/project-slug: westibcar/projeto-flask
+    backstage.io/techdocs-ref: dir:docs
 spec:
   type: service
   owner: devops
